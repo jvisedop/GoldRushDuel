@@ -1,7 +1,18 @@
 # GoldRush Duel
 
 ## Overview
-GoldRush Duel is a competitive web3 PvP game where players stake PAXG (mock ERC20 for local testing) in duels. The winner receives 95% of the pot, and 5% goes to the protocol treasury.
+GoldRush Duel is a competitive Web3 PvP game where players stake PAXG (tokenized gold) to duel each other for on-chain rewards.
+- Players join duels, play the Gold Rush minigame, and the winner takes 95% of the pot — the remaining 5% goes to the protocol treasury.
+- The game logic runs on a dedicated Arbitrum Orbit chain, optimized for fast gameplay and low fees.
+- All gameplay actions (duel creation, score submission, leaderboard updates) are recorded on the Orbit chain using high-performance Stylus smart contracts (Rust).
+- Duel outcomes trigger settlement on Arbitrum One, where the actual token stakes are managed and payouts occur.
+
+GoldRush Duel showcases a full-stack Web3 gaming architecture:
+- Orbit Layer (L3) for scalable, low-cost game logic.
+- Stylus Smart Contracts for efficient computation and gameplay state management.
+- Arbitrum One (L2) for secure token escrow and payout settlements.
+
+This project is a proof-of-concept for hybrid on-chain games that blend fast L3 gameplay with secure L2 financial interactions.
 
 ## Contracts
 - `MockERC20.sol`: Simple ERC20 token for local testing, with minting functionality.
@@ -85,6 +96,13 @@ npm start --prefix frontend
 ---
 
 ## Next Steps
-- Improve the duel flow to require both players to play and submit scores.
-- Add more advanced game logic and anti-cheat features.
-- Deploy to mainnet when ready. 
+- ✅ Deploy the Orbit chain for GoldRush gameplay, using Arbitrum’s Orbit SDK or RaaS provider.
+- ✅ Develop core game logic in Stylus (Rust) to handle duels, score tracking, and leaderboard updates on the Orbit chain.
+- ✅ Integrate the Orbit chain with the Arbitrum One settlement layer, ensuring duel outcomes trigger token payouts securely.
+- 🔄 Build a cross-chain bridge logic (manual or relayer) to connect Orbit gameplay results with Arbitrum One settlements.
+- 🎮 Enhance the gameplay mechanics and anti-cheat features within Stylus contracts for verifiable on-chain actions.
+- 🌐 Expand the frontend to support both Orbit and Arbitrum One interactions seamlessly in the user experience.
+- 🧪 Test full end-to-end flow: staking on Arbitrum One → gameplay on Orbit → settlement on Arbitrum One.
+- 🔜 Deploy on public testnets (Orbit Testnet + Arbitrum Sepolia) for community feedback and stress testing.
+- 📊 Explore Orbit analytics tools to monitor gameplay activity, fees, and user interactions.
+- 📢 Consider ecosystem grants or hackathon submission to showcase the use of Orbit + Stylus in gaming + DeFi crossovers.
